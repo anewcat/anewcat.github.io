@@ -1,0 +1,304 @@
+<!DOCTYPE html><html lang="zh-Hans" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>前端浏览器缓存 | QKA's blog</title><meta name="keywords" content="浏览器缓存、强缓存、协商缓存"><meta name="author" content="QKA"><meta name="copyright" content="QKA"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前端浏览器缓存Web缓存的种类：数据库缓存、CDN缓存、代理服务器缓存、浏览器缓存    Web缓存类型 描述    数据库缓存 当web应用关系复杂，数据表迅速上涨时，可以将查询后的数据放到内存中进行缓存，下次再查询时，就直接从内存缓存中获取，从而提高响应速度。   CDN缓存 当我们发送一个web请求时，CDN会帮我们计算去哪得到这些内容的路径短且快。这个是网站管理员部署的所以他们也可以将大家">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端浏览器缓存">
+<meta property="og:url" content="http://example.com/2022/08/14/%E5%89%8D%E7%AB%AF%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98/index.html">
+<meta property="og:site_name" content="QKA&#39;s blog">
+<meta property="og:description" content="前端浏览器缓存Web缓存的种类：数据库缓存、CDN缓存、代理服务器缓存、浏览器缓存    Web缓存类型 描述    数据库缓存 当web应用关系复杂，数据表迅速上涨时，可以将查询后的数据放到内存中进行缓存，下次再查询时，就直接从内存缓存中获取，从而提高响应速度。   CDN缓存 当我们发送一个web请求时，CDN会帮我们计算去哪得到这些内容的路径短且快。这个是网站管理员部署的所以他们也可以将大家">
+<meta property="og:locale">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+<meta property="article:published_time" content="2022-08-14T05:18:47.632Z">
+<meta property="article:modified_time" content="2022-08-17T02:22:41.818Z">
+<meta property="article:author" content="QKA">
+<meta property="article:tag" content="浏览器缓存、强缓存、协商缓存">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/08/14/%E5%89%8D%E7%AB%AF%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '前端浏览器缓存',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-17 10:22:41'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">31</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">31</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">QKA's blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">前端浏览器缓存</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-08-14T05:18:47.632Z" title="Created 2022-08-14 13:18:47">2022-08-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-08-17T02:22:41.818Z" title="Updated 2022-08-17 10:22:41">2022-08-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="前端浏览器缓存"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="前端浏览器缓存"><a href="#前端浏览器缓存" class="headerlink" title="前端浏览器缓存"></a>前端浏览器缓存</h2><h3 id="Web缓存的种类："><a href="#Web缓存的种类：" class="headerlink" title="Web缓存的种类："></a>Web缓存的种类：</h3><p>数据库缓存、CDN缓存、代理服务器缓存、浏览器缓存</p>
+<table>
+<thead>
+<tr>
+<th>Web缓存类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据库缓存</td>
+<td>当web应用关系复杂，数据表迅速上涨时，可以将查询后的数据放到内存中进行缓存，下次再查询时，就直接从内存缓存中获取，从而提高响应速度。</td>
+</tr>
+<tr>
+<td>CDN缓存</td>
+<td>当我们发送一个web请求时，CDN会帮我们计算去哪得到这些内容的路径短且快。这个是网站管理员部署的所以他们也可以将大家经常访问的内容放在CDN中，从而加快响应。</td>
+</tr>
+<tr>
+<td>代理服务器缓存</td>
+<td>代理服务器缓存，跟浏览器缓存性质类似，但是代理服务器缓存面向的群体更广，规模更大。他不只为一个用户服务，一般为大量用户提供服务，同一个副本会被重用多次，因此在减少响应时间和带宽使用方面很有效果。</td>
+</tr>
+<tr>
+<td>浏览器缓存</td>
+<td>每个浏览器都实现了HTTP缓存，我们使用HTTP协议与服务器交互的时候，浏览器就会根据一套与服务器约定的规则进行缓存工作，当我们在浏览器中点击前进和后退按钮时，利用的便是浏览器的缓存机制。</td>
+</tr>
+</tbody></table>
+<p>下面我们主要来说浏览器缓存</p>
+<h3 id="浏览器缓存的过程"><a href="#浏览器缓存的过程" class="headerlink" title="浏览器缓存的过程"></a>浏览器缓存的过程</h3><p>强缓存、协商缓存（根据是否需要重新向服务器发起请求分类）</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ca00bff3081e4cfd993a8f252f4fa23a~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="img"></p>
+<h3 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h3><p>强缓存是当我们访问URL的时候，不会向服务器发送请求，直接从缓存中读取资源，但是会返回200的状态码。</p>
+<h4 id="如何设置强缓存"><a href="#如何设置强缓存" class="headerlink" title="如何设置强缓存"></a>如何设置强缓存</h4><p>我们第一次进入页面，请求服务器，然后服务器进行应答，浏览器会根据响应头来判断是否对资源进行缓存，如果响应头中expires、pragma 或者cache-control字段，代表这是强缓存，浏览器就会把资源缓存在memory cache 或 disk cache中。</p>
+<p>第二次请求时，浏览器判断请求参数，如果符合强缓存条件就直接返回状态码200，从本地缓存中拿数据。否则把响应参数存在request header请求头中，看是否符合协商缓存，符合则返回状态码304，不符合则服务器会返回全新资源。</p>
+<h5 id="expires"><a href="#expires" class="headerlink" title="expires"></a>expires</h5><p>是HTTP1.0控制网页缓存的字段，值为一个时间戳，准确来讲是格林尼治时间，服务器返回该请求结果缓存的到期时间，意思是，再次发送请求时，如果未超过过期时间，直接使用该缓存，如果过期了则重新请求。</p>
+<p>有个缺点，就是它判断是否过期是用本地时间来判断的，本地时间是可以自己修改的。</p>
+<h5 id="Cache-Control（重要）"><a href="#Cache-Control（重要）" class="headerlink" title="Cache-Control（重要）"></a>Cache-Control（重要）</h5><table>
+<thead>
+<tr>
+<th>字段值</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>no-cache</td>
+<td>防止从缓存中返回过期的资源，所以使用之前，需要和源服务器发起请求比对过期时间</td>
+</tr>
+<tr>
+<td>no-store</td>
+<td>这个指令才是真正的不进行缓存，暗示请求报文中可能含有机密信息，不可缓存</td>
+</tr>
+<tr>
+<td>max-age</td>
+<td>在指定时间内，缓存服务器不再对资源的有效性进行确认，可以使用</td>
+</tr>
+<tr>
+<td>private</td>
+<td>只有某个在通过缓存服务器的时候，得到缓存资源</td>
+</tr>
+<tr>
+<td>public</td>
+<td>所有的用户在通过缓存服务器的时候，都可以缓存这个资源。</td>
+</tr>
+</tbody></table>
+<p>在<code>Cache-Control</code> 中，这些值可以自由组合，多个值如果冲突时，也是有优先级的，而<code>no-store</code>优先级最高。</p>
+<h5 id="pragma"><a href="#pragma" class="headerlink" title="pragma"></a>pragma</h5><p>这个是HTTP1.0中禁用网页缓存的字段，其取值为no-cache，和Cache-Control的no-cache效果一样。</p>
+<h3 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h3><p>协商缓存就是强缓存失效后，浏览器携带缓存标识向服务器发送请求，由服务器根据缓存标识来决定是否使用缓存的过程。</p>
+<p>主要有以下两种情况：</p>
+<p>协商缓存生效，返回304</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9f26ab979fcd4df6906a2e9d5e28f56a~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="img"></p>
+<p>协商缓存失效，返回200和请求结果</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/449a56554c1e4f0c949e139081a9db4c~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" alt="img"></p>
+<h4 id="如何设置协商缓存？"><a href="#如何设置协商缓存？" class="headerlink" title="如何设置协商缓存？"></a>如何设置协商缓存？</h4><h5 id="Last-Modified-If-Modified-Since"><a href="#Last-Modified-If-Modified-Since" class="headerlink" title="Last-Modified / If-Modified-Since"></a>Last-Modified / If-Modified-Since</h5><ul>
+<li><p>Last-Modified是服务器响应请求时，返回该资源文件在服务器最后被修改的时间。</p>
+</li>
+<li><p>If-Modified-Since则是客户端再次发起该请求时，携带上次请求返回的Last-Modified值，通过此字段值告诉服务器该资源上次请求返回的最后被修改时间。服务器收到该请求，发现请求头含有If-Modified-Since字段，则会根据If-Modified-Since的字段值与该资源在服务器的最后被修改时间做对比，若服务器的资源最后被修改时间大于If-Modified-Since的字段值，则重新返回资源，状态码为200；否则则返回304，代表资源无更新，可继续使用缓存文件。</p>
+</li>
+</ul>
+<h5 id="Etag-If-None-Match"><a href="#Etag-If-None-Match" class="headerlink" title="Etag / If-None-Match"></a>Etag / If-None-Match</h5><ul>
+<li><p>Etag是服务器响应请求时，返回当前资源文件的一个唯一标识(由服务器生成)。</p>
+</li>
+<li><p>If-None-Match是客户端再次发起该请求时，携带上次请求返回的唯一标识Etag值，通过此字段值告诉服务器该资源上次请求返回的唯一标识值。服务器收到该请求后，发现该请求头中含有If-None-Match，则会根据If-None-Match的字段值与该资源在服务器的Etag值做对比，一致则返回304，代表资源无更新，继续使用缓存文件；不一致则重新返回资源文件，状态码为200。</p>
+</li>
+</ul>
+<blockquote>
+<p>Etag / If-None-Match优先级高于Last-Modified / If-Modified-Since，同时存在则只有Etag / If-None-Match生效。</p>
+<p>其实二者作用基本相同，但是实现方式不同；modefied是时间，有的文件或数据动态生成，即使文件内容没变，但是服务器中的时间发生了改变，此时会导致不必要的更新；etag是根据文件生成的一个hash值（文件没变就不会变）所以更可靠一些。</p>
+</blockquote>
+<h3 id="浏览器缓存位置"><a href="#浏览器缓存位置" class="headerlink" title="浏览器缓存位置"></a>浏览器缓存位置</h3><p>Service Worker、Memory Cache、Disk Cache、Push Cache。</p>
+<p>上面我们说，强缓存我们会把资源放到memory cache 和 disk cache中，那什么资源放在memory cache，什么资源放在disk cache中？</p>
+<ul>
+<li><p>图像和网页等资源主要缓存在disk cache，</p>
+</li>
+<li><p>操作系统缓存文件等资源大部分都会缓存在memory cache中。具体操作浏览器自动分配，看谁的资源利用率不高就分给谁。</p>
+</li>
+</ul>
+<p>可以看到memory cache请求时间都是0ms，这个是不是太神奇了，这方面我来梳理下。</p>
+<p><strong>查找浏览器缓存时会按顺序查找: Service Worker–&gt;Memory Cache–&gt;Disk Cache–&gt;Push Cache。</strong></p>
+<h4 id="Service-Worker"><a href="#Service-Worker" class="headerlink" title="Service Worker"></a>Service Worker</h4><p>是运行在浏览器背后的独立线程，一般可以用来实现缓存功能。使用 Service Worker的话，传输协议必须为 HTTPS。因为 Service Worker 中涉及到请求拦截，所以必须使用 HTTPS 协议来保障安全。Service Worker 的缓存与浏览器其他内建的缓存机制不同，它可以让我们自由控制缓存哪些文件、如何匹配缓存、如何读取缓存，并且缓存是持续性的。</p>
+<h4 id="Memory-Cache"><a href="#Memory-Cache" class="headerlink" title="Memory Cache"></a>Memory Cache</h4><p>内存中的缓存，主要包含的是当前中页面中已经抓取到的资源，例如页面上已经下载的样式、脚本、图片等。读取内存中的数据肯定比磁盘快，内存缓存虽然读取高效，可是缓存持续性很短，会随着进程的释放而释放。一旦我们关闭 Tab 页面，内存中的缓存也就被释放了。</p>
+<h4 id="Disk-Cache"><a href="#Disk-Cache" class="headerlink" title="Disk Cache"></a>Disk Cache</h4><p>存储在硬盘中的缓存，读取速度慢点，但是什么都能存储到磁盘中，比之 Memory Cache 胜在容量和存储时效性上。</p>
+<p>在所有浏览器缓存中，Disk Cache 覆盖面基本是最大的。它会根据 HTTP Herder 中的字段判断哪些资源需要缓存，哪些资源可以不请求直接使用，哪些资源已经过期需要重新请求。并且即使在跨站点的情况下，相同地址的资源一旦被硬盘缓存下来，就不会再次去请求数据。绝大部分的缓存都来自 Disk Cache。</p>
+<p>memory cache 要比 disk cache 快的多。举个例子：从远程 web 服务器直接提取访问文件可能需要500毫秒(半秒)，那么磁盘访问可能需要10-20毫秒，而内存访问只需要100纳秒，更高级的还有 L1缓存访问(最快和最小的 CPU 缓存)只需要0.5纳秒。</p>
+<p>很神奇的，我们又看到了一个prefetch cache，这个又是什么呢?</p>
+<p><strong>prefetch cache(预取缓存)</strong></p>
+<p>link标签上带了prefetch，再次加载会出现。</p>
+<p>prefetch是预加载的一种方式，被标记为prefetch的资源，将会被浏览器在空闲时间加载。</p>
+<h4 id="Push-Cache"><a href="#Push-Cache" class="headerlink" title="Push Cache"></a>Push Cache</h4><p>Push Cache（推送缓存）是 HTTP/2 中的内容，当以上三种缓存都没有命中时，它才会被使用。它只在会话（Session）中存在，一旦会话结束就被释放，并且缓存时间也很短暂，在Chrome浏览器中只有5分钟左右，同时它也并非严格执行HTTP头中的缓存指令。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">QKA</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2022/08/14/%E5%89%8D%E7%AB%AF%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98/">http://example.com/2022/08/14/%E5%89%8D%E7%AB%AF%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E3%80%81%E5%BC%BA%E7%BC%93%E5%AD%98%E3%80%81%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98/">浏览器缓存、强缓存、协商缓存</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/08/02/CSS%E4%B8%AD%E7%9A%84%E5%B1%85%E4%B8%AD%E9%97%AE%E9%A2%98/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">CSS中的居中问题</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">QKA</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">31</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">31</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">9</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98"><span class="toc-number">1.</span> <span class="toc-text">前端浏览器缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Web%E7%BC%93%E5%AD%98%E7%9A%84%E7%A7%8D%E7%B1%BB%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">Web缓存的种类：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">浏览器缓存的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E7%BC%93%E5%AD%98"><span class="toc-number">1.3.</span> <span class="toc-text">强缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E5%BC%BA%E7%BC%93%E5%AD%98"><span class="toc-number">1.3.1.</span> <span class="toc-text">如何设置强缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#expires"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">expires</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Cache-Control%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">Cache-Control（重要）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#pragma"><span class="toc-number">1.3.1.3.</span> <span class="toc-text">pragma</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98"><span class="toc-number">1.4.</span> <span class="toc-text">协商缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98%EF%BC%9F"><span class="toc-number">1.4.1.</span> <span class="toc-text">如何设置协商缓存？</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Last-Modified-If-Modified-Since"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">Last-Modified &#x2F; If-Modified-Since</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Etag-If-None-Match"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">Etag &#x2F; If-None-Match</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.5.</span> <span class="toc-text">浏览器缓存位置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Service-Worker"><span class="toc-number">1.5.1.</span> <span class="toc-text">Service Worker</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Memory-Cache"><span class="toc-number">1.5.2.</span> <span class="toc-text">Memory Cache</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Disk-Cache"><span class="toc-number">1.5.3.</span> <span class="toc-text">Disk Cache</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Push-Cache"><span class="toc-number">1.5.4.</span> <span class="toc-text">Push Cache</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/14/%E5%89%8D%E7%AB%AF%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98/" title="前端浏览器缓存">前端浏览器缓存</a><time datetime="2022-08-14T05:18:47.632Z" title="Created 2022-08-14 13:18:47">2022-08-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/02/CSS%E4%B8%AD%E7%9A%84%E5%B1%85%E4%B8%AD%E9%97%AE%E9%A2%98/" title="CSS中的居中问题">CSS中的居中问题</a><time datetime="2022-08-02T11:35:13.815Z" title="Created 2022-08-02 19:35:13">2022-08-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/07/31/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/" title="路由守卫">路由守卫</a><time datetime="2022-07-31T05:47:27.642Z" title="Created 2022-07-31 13:47:27">2022-07-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/07/30/JS%E4%B8%AD%E7%9A%84%E7%BB%A7%E6%89%BF/" title="JS中的继承">JS中的继承</a><time datetime="2022-07-30T04:17:39.835Z" title="Created 2022-07-30 12:17:39">2022-07-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/07/24/Vue2%E4%B8%AD%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" title="Vue2中的生命周期">Vue2中的生命周期</a><time datetime="2022-07-24T07:20:17.941Z" title="Created 2022-07-24 15:20:17">2022-07-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By QKA</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: 'c98cd7e6aa43c711ecb7',
+      clientSecret: '5c4b30ca0587b8f45ef1990c837471d4411e90d5',
+      repo: 'QKA-s-blog-comments',
+      owner: 'anewcat',
+      admin: ['anewcat'],
+      id: 'd04f2353c00c45b40c96e2f2fbf517e8',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
